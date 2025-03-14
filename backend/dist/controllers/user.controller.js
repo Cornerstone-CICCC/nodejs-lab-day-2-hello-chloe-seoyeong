@@ -56,10 +56,12 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
     if (!username || !password) {
         res.status(500).json({ message: "Missing one of those or both." });
+        return;
     }
     const user = yield user_model_1.default.login(username, password);
     if (!user) {
         res.status(500).json({ message: "Incorrect one of those or both." });
+        return;
     }
     if (req.session) {
         req.session.isLoggedIn = true;
@@ -77,12 +79,12 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
  * @returns {void} Return newly created user.
  */
 const addUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("hrere");
     const { username, password, firstname, lastname } = req.body;
     if (!username || !password || !firstname || !lastname) {
         res.status(500).json({
             message: "You need to fill all forms!",
         });
+        return;
     }
     const user = yield user_model_1.default.create({
         username,
@@ -94,6 +96,7 @@ const addUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(400).json({
             message: "Username is already taken!",
         });
+        return;
     }
     res.status(200).json({
         message: "Added new user successfully! 🙂",

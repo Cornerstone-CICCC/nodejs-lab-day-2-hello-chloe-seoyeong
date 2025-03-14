@@ -60,11 +60,9 @@ const title = "Login"
         password: passwordInput.value
       })
     })
-    console.log(res);
     if(!res.ok) {
-      alert("Something wrong!")
-      loginForm.clear();
       window.location.href = "/login"
+      return;
     }
     window.location.href = "/profile"
   })

@@ -73,11 +73,11 @@ const title = "Join us!"
       })
     })
 
-    console.log(res)
     if(!res.ok) {
-      alert("Something wrong!")
-      joinForm.clear();
-      window.location.href = "/register"
+      // joinForm.clear();
+      const data = await res.json();
+      errorMessage.innerHTML = data.message;
+      return
     }
     window.location.href = "/login";
   })

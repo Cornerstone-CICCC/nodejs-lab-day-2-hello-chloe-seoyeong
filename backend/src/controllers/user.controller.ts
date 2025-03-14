@@ -50,10 +50,12 @@ const loginUser = async (
   const { username, password } = req.body;
   if (!username || !password) {
     res.status(500).json({ message: "Missing one of those or both." });
+    return;
   }
   const user = await userModel.login(username, password);
   if (!user) {
     res.status(500).json({ message: "Incorrect one of those or both." });
+    return;
   }
 
   if (req.session) {
@@ -76,12 +78,12 @@ const addUser = async (
   req: Request<{}, {}, Omit<IUser, "id">>,
   res: Response
 ) => {
-  console.log("hrere");
   const { username, password, firstname, lastname } = req.body;
   if (!username || !password || !firstname || !lastname) {
     res.status(500).json({
       message: "You need to fill all forms!",
     });
+    return;
   }
   const user = await userModel.create({
     username,
@@ -93,6 +95,7 @@ const addUser = async (
     res.status(400).json({
       message: "Username is already taken!",
     });
+    return;
   }
   res.status(200).json({
     message: "Added new user successfully! 🙂",

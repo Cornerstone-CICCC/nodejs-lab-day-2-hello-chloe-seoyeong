@@ -5,10 +5,21 @@ const title = "Home"
 ---
 
 <Layout pageTitle={title}>
-	<div class="home">
+	<div class="home"></div>
+	<div class="links">
+		<a href="/register">Sign up &rarr;</a>
+		<a href="/login">Log in &rarr;</a>
 	</div>
 </Layout>
 
+<style>
+	.links {
+		text-align: center;
+	}
+	.links a {
+		margin: 0 8px;
+	}
+</style>
 <script>
 
 	// const home = document.querySelector(".home") as HTMLDivElement;
