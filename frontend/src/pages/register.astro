@@ -1,0 +1,82 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+const title = "Join us!"
+---
+
+<Layout pageTitle={title}>
+  <form action="/register" method="POST" id="join-form">
+    <label>
+      Username: 
+      <input type="text" name="username" required />
+    </label>
+    <label>
+      Password: 
+      <input type="password" name="password" required />
+    </label>
+    <label>
+      Firstname: 
+      <input type="text" name="firstname" required />
+    </label>
+    <label>
+      Lastname: 
+      <input type="text" name="lastname" required />
+    </label>
+    <button type="submit" id="join-button">Register</button>
+  </form>
+  <p class="error"></p>
+</Layout>
+
+<style>
+  label {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 8px;;
+  }
+  input {
+    display: inline-block;
+    width: 200px;
+  }
+  form {
+    text-align: center;
+  }
+  button {
+    margin-top: 20px;
+    border: 0;
+    background-color: tomato;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 16px;
+  }
+</style>
+
+<script>
+  const joinButton = document.querySelector("#join-button") as HTMLButtonElement;
+  const joinForm = document.querySelector("#join-form") as HTMLFormElement;
+  const usernameInput = joinForm?.querySelector('input[name="username"]') as HTMLInputElement;
+  const passwordInput = joinForm?.querySelector('input[name="password"]') as HTMLInputElement;
+  const firstnameInput = joinForm?.querySelector('input[name="firstname"]') as HTMLInputElement;
+  const lastnameInput = joinForm?.querySelector('input[name="lastname"]') as HTMLInputElement;
+  const errorMessage = document.querySelector('.error') as HTMLParagraphElement;
+
+  joinForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const res = await fetch(`http://localhost:3600/signup`, {
+      method: "POST",
+      credentials: "include",
+      headers: {"Content-Type" : "application/json"},
+      body: JSON.stringify({
+        username: usernameInput.value,
+        password: passwordInput.value,
+        firstname: firstnameInput.value,
+        lastname: lastnameInput.value
+      })
+    })
+
+    console.log(res)
+    if(!res.ok) {
+      alert("Something wrong!")
+    }
+    window.location.href = "/login";
+  })
+</script>
