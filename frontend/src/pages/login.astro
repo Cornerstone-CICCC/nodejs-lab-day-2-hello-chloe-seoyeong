@@ -42,6 +42,7 @@ const title = "Login"
 </style>
 
 <script>
+
   const loginButton = document.querySelector("#login-button") as HTMLButtonElement;
   const loginForm = document.querySelector("#login-form") as HTMLFormElement;
   const usernameInput = loginForm.querySelector('input[name="username"]') as HTMLInputElement;
@@ -62,6 +63,7 @@ const title = "Login"
     console.log(res);
     if(!res.ok) {
       alert("Something wrong!")
+      loginForm.clear();
       window.location.href = "/login"
     }
     window.location.href = "/profile"

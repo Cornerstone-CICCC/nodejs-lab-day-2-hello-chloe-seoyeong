@@ -76,6 +76,8 @@ const title = "Join us!"
     console.log(res)
     if(!res.ok) {
       alert("Something wrong!")
+      joinForm.clear();
+      window.location.href = "/register"
     }
     window.location.href = "/login";
   })
