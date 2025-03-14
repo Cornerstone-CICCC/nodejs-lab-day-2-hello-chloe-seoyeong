@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Home"
+---
+
+<Layout pageTitle={title}>
+	<div class="home"></div>
+	<div class="links">
+		<a href="/register">Sign up &rarr;</a>
+		<a href="/login">Log in &rarr;</a>
+	</div>
+</Layout>
+
+<style>
+	.links {
+		text-align: center;
+	}
+	.links a {
+		margin: 0 8px;
+	}
+</style>
+<script>
+
+	// const home = document.querySelector(".home") as HTMLDivElement;
+
+	// const render = async () => {
+	// 	const res = await fetch('http://localhost:3600', {
+	// 		method: "GET",
+	// 		credentials: "include"
+	// 	})
+	// 	if(!res.ok) {
+	// 		home.innerHTML = "Error"
+	// 	}
+	// 	const data = await res.json();
+	// 	console.log(data);
+	// }
+
+	// render();
+
+</script>
